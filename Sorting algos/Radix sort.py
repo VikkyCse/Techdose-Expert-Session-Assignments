@@ -7,15 +7,21 @@ def counting_sort(nums,ex):
     output = [0]*len(nums)
     n=len(nums)
     for i in nums:
-        count[int(i)%ex]+=1
+        index = (i//ex)
+        count[int(index%10)] += 1
     for i in range(1,10):
         count[i]+=count[i-1]
 
-
-    for i in range(n-1,-1,-1):
-        output[count[nums[i]%ex]-1]=nums[i]
-        count[nums[i]%ex]-=1
+    i=n-1
+    while i>=0:
+        index = (nums[i]/ex)
+        output[count[int(index%10)]-1]=nums[i]
+        count[int((index)%10)] -= 1
+        i-=1
     print(output)
+
+    for i in range(0,len(nums)):
+        nums[i] = output[i]
     
 def radix_sort(nums):
 
