@@ -1,0 +1,36 @@
+# 42. Trapping Rain Water
+
+
+int trap(int* h, int n){
+    
+    int l=0;
+    int r=n-1;
+    int lm=0,rm=0,re=0;
+    while(l<=r){
+       
+        if(h[l]<=h[r]){
+            
+            if(h[l] > lm)
+                lm=h[l];
+            else
+            {
+               // printf("%d\n",re);
+                re+=lm-h[l];
+               // printf("%d\n",re);
+            }
+            l++;
+            
+            }
+        else{
+            if(h[r]>rm)
+                rm=h[r];
+            else{
+               // printf("%d\n",re);
+                re+=rm-h[r];
+               // printf("%d\n",re);
+            }
+            r--;
+        }
+    }
+    return re;
+}
